@@ -430,6 +430,7 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
+                //Trainer send out next pokemon
                 var nextPokemon = trainerParty.GetHealthyPokemon();
                 if (nextPokemon != null)
                     StartCoroutine(AboutToUse(nextPokemon));
@@ -672,6 +673,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (playerUnit.Pokemon.HP > 0)
         {
+            dialogBox.EnableActionSelector(false);
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}");
             playerUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
@@ -800,6 +802,7 @@ public class BattleSystem : MonoBehaviour
             }
             else
             {
+                dialogBox.EnableActionSelector(false);
                 yield return dialogBox.TypeDialog($"Can't escape");
                 state = BattleState.RunningTurn;
             }
